@@ -11,9 +11,12 @@ body {
   padding: 0;
 }
 
-h1 {
-  margin-top: 0;
+img {
+  width: 289px;
+  height: 69px;
+  margin-bottom: 1em;
 }
+
 
 p {
   margin-bottom: 0;

@@ -23,8 +23,11 @@ const handleInput = (event: Event) => {
 
 <style scoped>
 .search-input {
+  color: var(--fgColor);
+  background: #fff;
+
   width: 100%;
-  padding: 20px;
+  padding: 1em;
   font-family: "Nunito", sans-serif;
   font-size: 20px;
   border: 2px solid var(--fgColor);

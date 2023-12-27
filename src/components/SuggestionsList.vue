@@ -8,8 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
 interface City {
   rank: number;
   city: string;
@@ -46,15 +44,17 @@ const highlightMatch = (text: string, searchTerm: string) => {
   font-size: 24px;
 }
 
-.suggestions-list >>> .highlight {
+.suggestions-list :deep(.highlight) {
   background: #ffdc8a;
 }
 
 .name {
   font-weight: bold;
+  text-align: left;
 }
 
 .population {
+  margin-left: 1em;
   font-size: 18px;
   color: #666;
 }
@@ -70,6 +70,10 @@ const highlightMatch = (text: string, searchTerm: string) => {
   .population {
     text-align: center;
     width: 100%;
+  }
+
+  .population {
+    margin-left: 0;
   }
 }
 </style>

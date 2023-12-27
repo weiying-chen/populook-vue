@@ -23,7 +23,7 @@ const filteredCities = computed(() => {
 
 <template>
   <div class="app">
-    <h1>Populook</h1>
+    <img src="./assets/logo.svg" alt="Populook" />
     <SearchInput v-model="searchTerm" />
     <div v-if="searchTerm">
       <SuggestionsList :cities="filteredCities" :searchTerm="searchTerm" />
@@ -39,6 +39,9 @@ const filteredCities = computed(() => {
 @import './global.css';
 
 .app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 1200px;
   margin: auto;
   padding: 20px;
