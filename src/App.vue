@@ -1,17 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
-import axios from 'axios';
+import { ref, computed } from 'vue';
 import { City } from './types';
+import useFetch from './composables/useFetch';
 import SearchInput from './components/SearchInput.vue';
 import SuggestionsList from './components/SuggestionsList.vue';
 
-const cities = ref<City[]>([]);
 const searchTerm = ref('');
-
-onMounted(async () => {
-  const result = await axios('https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json');
-  cities.value = result.data;
-});
+const { data: cities, error } = useFetch<City[]>('/data.json');
 
 const filteredCities = computed(() => {
   return cities.value.filter(city =>
@@ -25,12 +20,9 @@ const filteredCities = computed(() => {
   <div class="app">
     <img src="./assets/logo.svg" alt="Populook" />
     <SearchInput v-model="searchTerm" />
-    <div v-if="searchTerm">
-      <SuggestionsList :cities="filteredCities" :searchTerm="searchTerm" />
-    </div>
-    <div v-else>
-      <p>Welcome to Populook! Enter a city or state name to find its population.</p>
-    </div>
+    <p v-if="error" class="error">{{ error }}</p>
+    <SuggestionsList v-else-if="searchTerm" :cities="filteredCities" :searchTerm="searchTerm" />
+    <p v-else>Welcome to Populook! Enter a city or state name to find its population.</p>
   </div>
 </template>
 
@@ -45,5 +37,9 @@ const filteredCities = computed(() => {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
+
+  .error {
+    color: #ff0000;
+  }
 }
 </style>
