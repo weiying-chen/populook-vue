@@ -6,7 +6,7 @@ import SearchInput from './components/SearchInput.vue';
 import SuggestionsList from './components/SuggestionsList.vue';
 
 const searchTerm = ref('');
-const { data: cities, error } = useFetch<City[]>('/data.json');
+const { data: cities, error } = useFetch<City>('/data.json');
 
 const filteredCities = computed(() => {
   return cities.value.filter(city =>
@@ -28,7 +28,7 @@ const filteredCities = computed(() => {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
-@import './global.css';
+@import './styles.css';
 
 .app {
   display: flex;

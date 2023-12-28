@@ -1,8 +1,8 @@
-import { ref, onMounted, Ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-function useDataFetching<T>(dataUrl: string) {
-  const data = ref<T>([] as T) as Ref<T>;
+function useFetch<T>(dataUrl: string) {
+  const data = ref<T[]>([]);
   const error = ref<string | null>(null);
 
   const fetchData = async () => {
@@ -34,4 +34,4 @@ function useDataFetching<T>(dataUrl: string) {
   return { data, error };
 }
 
-export default useDataFetching;
+export default useFetch;
