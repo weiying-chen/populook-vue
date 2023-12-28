@@ -12,7 +12,7 @@ function useFetch<T>(dataUrl: string) {
         data.value = JSON.parse(cachedData);
         error.value = null;
       } else {
-        const result = await axios.get<T>(dataUrl);
+        const result = await axios.get(dataUrl);
 
         if (result.status === 200 && Array.isArray(result.data)) {
           data.value = result.data;
